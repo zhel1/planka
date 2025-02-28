@@ -1,0 +1,88 @@
+:global(#app) {
+  .sidebar {
+    display: block;
+    min-width: max-content;
+    max-height: calc(100vh - 180px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    width: max-content;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+    }
+  }
+
+  .react-datetime-picker__wrapper {
+    border: none;
+  }
+
+  .moduleWrapper {
+    margin: 0 10px 0 10px;
+  }
+
+  .blockWrapper {
+    white-space: nowrap;
+    margin-top: 30px;
+    width: 350px;
+  }
+
+  .statUser {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    gap: 5px;
+    margin-left: 5px;
+  }
+
+  .statUserLabels {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    margin-left: 5px;
+  }
+
+  .statUserItem {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-gap: 5px;
+  }
+
+  .contentText {
+    margin: 0 5px 0 5px;
+    display: inline;
+    white-space: nowrap;
+  }
+
+  .statHeader {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .headerText {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .moreToolsMenu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .moreToolsMenuHeader {
+    align-self: start;
+    margin-bottom: 5px;
+  }
+}

@@ -97,6 +97,7 @@ const UsersModal = React.memo(
                 <Table.HeaderCell width={4}>{t('common.username')}</Table.HeaderCell>
                 <Table.HeaderCell width={4}>{t('common.email')}</Table.HeaderCell>
                 <Table.HeaderCell>{t('common.administrator')}</Table.HeaderCell>
+                <Table.HeaderCell>ldap</Table.HeaderCell>
                 <Table.HeaderCell />
               </Table.Row>
             </Table.Header>
@@ -111,6 +112,7 @@ const UsersModal = React.memo(
                   organization={item.organization}
                   phone={item.phone}
                   isAdmin={item.isAdmin}
+                  isLdap={item.isLdap}
                   isLocked={item.isLocked}
                   isRoleLocked={item.isRoleLocked}
                   isUsernameLocked={item.isUsernameLocked}

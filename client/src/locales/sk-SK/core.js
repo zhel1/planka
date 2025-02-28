@@ -11,6 +11,10 @@ export default {
     longDateTime: "d MMMM 'v' p",
     fullDate: 'd MMM y',
     fullDateTime: "d MMMM y 'v' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -94,6 +98,7 @@ export default {
       fromComputer_title: 'Z počítača',
       general: 'Všeobecné',
       hours: 'Hodiny',
+      impossibleAction: 'Akcia nie je možná (LDAP)',
       invalidCurrentPassword: 'Neplatné aktuálne heslo',
       labels: 'Štítky',
       leaveBoard_title: 'Opustiť tabuľu',

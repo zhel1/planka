@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: 'E-mail alebo používateľské meno',
       invalidEmailOrUsername: 'Nesprávny e-mail alebo používateľské meno',
+      invalidLdap: 'Zlyhanie pripojenia LDAP',
       invalidPassword: 'Nesprávne heslo',
       logInToPlanka: 'Prihlásiť sa do Planka',
       noInternetConnection: 'Bez pripojenia k internetu',

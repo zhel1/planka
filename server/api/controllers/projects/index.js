@@ -1,5 +1,8 @@
 module.exports = {
   async fn() {
+    // Here we need to get all projects, where we are managers + projects,
+    // were we are not managers, but in some boards added as members.
+
     const { currentUser } = this.req;
 
     const managerProjectIds = await sails.helpers.users.getManagerProjectIds(currentUser.id);

@@ -11,6 +11,10 @@ export default {
     longDateTime: "MMMM d 'at' p",
     fullDate: 'MMM d, y',
     fullDateTime: "MMMM d, y 'a' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -92,6 +96,7 @@ export default {
       fromComputer_title: 'Fra computer',
       general: 'Generelt',
       hours: 'Timer',
+      impossibleAction: 'Handling er ikke mulig (LDAP)',
       invalidCurrentPassword: 'Nuværende adgangskode are ugyldig',
       labels: 'Mærkater',
       leaveBoard_title: 'Forlad bræt',

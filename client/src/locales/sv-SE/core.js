@@ -11,6 +11,10 @@ export default {
     longDateTime: "MMMM d 'at' p",
     fullDate: 'MMM d, y',
     fullDateTime: "MMMM d, y 'at' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -95,6 +99,7 @@ export default {
       fromComputer_title: 'Från dator',
       general: 'Allmänt',
       hours: 'Timmar',
+      impossibleAction: 'Åtgärd är inte möjligt',
       invalidCurrentPassword: 'Ogiltigt nuvarande lösenord',
       labels: 'Etiketter',
       leaveBoard_title: 'Lämna Tavla',

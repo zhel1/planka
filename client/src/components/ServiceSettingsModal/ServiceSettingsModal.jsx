@@ -7,8 +7,9 @@ import ManagersPane from './ManagersPane';
 import BackgroundPane from './BackgroundPane';
 import GeneralPane from './GeneralPane';
 
-const ProjectSettingsModal = React.memo(
+const ServiceSettingsModal = React.memo(
   ({
+    serviceType,
     name,
     background,
     backgroundImage,
@@ -44,7 +45,14 @@ const ProjectSettingsModal = React.memo(
         menuItem: t('common.general', {
           context: 'title',
         }),
-        render: () => <GeneralPane name={name} onUpdate={onUpdate} onDelete={onDelete} />,
+        render: () => (
+          <GeneralPane
+            serviceType={serviceType}
+            name={name}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
+          />
+        ),
       },
       {
         menuItem: t('common.managers', {
@@ -92,7 +100,8 @@ const ProjectSettingsModal = React.memo(
   },
 );
 
-ProjectSettingsModal.propTypes = {
+ServiceSettingsModal.propTypes = {
+  serviceType: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   /* eslint-disable react/forbid-prop-types */
   background: PropTypes.object,
@@ -111,9 +120,9 @@ ProjectSettingsModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-ProjectSettingsModal.defaultProps = {
+ServiceSettingsModal.defaultProps = {
   background: undefined,
   backgroundImage: undefined,
 };
 
-export default ProjectSettingsModal;
+export default ServiceSettingsModal;

@@ -11,6 +11,10 @@ export default {
     longDateTime: "d MMMM 'v' p",
     fullDate: 'd MMM, y',
     fullDateTime: "d MMMM, y 'v' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -104,6 +108,7 @@ export default {
       fromTrello: 'Z Trella',
       general: 'Obecné',
       hours: 'Hodiny',
+      impossibleAction: 'Akce není možná (LDAP)',
       importBoard_title: 'Importovat tabuli',
       invalidCurrentPassword: 'Neplatné aktuální heslo',
       labels: 'Štítky',

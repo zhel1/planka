@@ -4,9 +4,10 @@ import orm from '../orm';
 
 export const selectCurrentUserId = ({ auth: { userId } }) => userId;
 
-export const selectUsers = createSelector(orm, ({ User }) =>
-  User.getOrderedUndeletedQuerySet().toRefArray(),
-);
+export const makeSelectUsers = () =>
+  createSelector(orm, ({ User }) => User.getOrderedUndeletedQuerySet().toRefArray());
+
+export const selectUsers = makeSelectUsers();
 
 export const selectUsersExceptCurrent = createSelector(
   orm,
@@ -70,6 +71,39 @@ export const selectProjectsForCurrentUser = createSelector(
   },
 );
 
+export const selectSchedulersForCurrentUser = createSelector(
+  orm,
+  (state) => selectCurrentUserId(state),
+  ({ User }, id) => {
+    if (!id) {
+      return id;
+    }
+
+    const userModel = User.withId(id);
+
+    if (!userModel) {
+      return userModel;
+    }
+
+    return userModel.getOrderedAvailableSchedulersModelArray().map((schedulerModel) => {
+      // const boardsModels = projectModel.getOrderedBoardsModelArrayAvailableForUser(userModel.id);
+      //
+      // let notificationsTotal = 0;
+      // boardsModels.forEach((boardModel) => {
+      //   boardModel.cards.toModelArray().forEach((cardModel) => {
+      //     notificationsTotal += cardModel.getUnreadNotificationsQuerySet().count();
+      //   });
+      // });
+      //
+      return {
+        ...schedulerModel.ref,
+        // notificationsTotal,
+        // firstBoardId: boardsModels[0] && boardsModels[0].id,
+      };
+    });
+  },
+);
+
 export const selectProjectsToListsForCurrentUser = createSelector(
   orm,
   (state) => selectCurrentUserId(state),
@@ -90,6 +124,26 @@ export const selectProjectsToListsForCurrentUser = createSelector(
         ...boardModel.ref,
         lists: boardModel.getOrderedListsQuerySet().toRefArray(),
       })),
+    }));
+  },
+);
+
+export const selectSchedulersToListsForCurrentUser = createSelector(
+  orm,
+  (state) => selectCurrentUserId(state),
+  ({ User }, id) => {
+    if (!id) {
+      return id;
+    }
+
+    const userModel = User.withId(id);
+
+    if (!userModel) {
+      return userModel;
+    }
+
+    return userModel.getOrderedAvailableSchedulersModelArray().map((schedulerModel) => ({
+      ...schedulerModel.ref,
     }));
   },
 );
@@ -124,10 +178,13 @@ export const selectNotificationsForCurrentUser = createSelector(
 
 export default {
   selectCurrentUserId,
+  makeSelectUsers,
   selectUsers,
   selectUsersExceptCurrent,
   selectCurrentUser,
   selectProjectsForCurrentUser,
+  selectSchedulersForCurrentUser,
   selectProjectsToListsForCurrentUser,
+  selectSchedulersToListsForCurrentUser,
   selectNotificationsForCurrentUser,
 };

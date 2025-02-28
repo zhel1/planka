@@ -9,12 +9,22 @@ import StaticContainer from '../../containers/StaticContainer';
 import UsersModalContainer from '../../containers/UsersModalContainer';
 import UserSettingsModalContainer from '../../containers/UserSettingsModalContainer';
 import ProjectAddModalContainer from '../../containers/ProjectAddModalContainer';
+import ProjectSettingsModalContainer from '../../containers/ProjectSettingsModalContainer';
+import SchedulerSettingsModalContainer from '../../containers/SchedulerSettingsModalContainer';
+import SchedulerAddModalContainer from '../../containers/SchedulerAddModalContainer';
 import Background from '../Background';
 
 import styles from './Core.module.scss';
 
 const Core = React.memo(
-  ({ isInitializing, isSocketDisconnected, currentModal, currentProject, currentBoard }) => {
+  ({
+    isInitializing,
+    isSocketDisconnected,
+    currentModal,
+    currentProject,
+    currentScheduler,
+    currentBoard,
+  }) => {
     const [t] = useTranslation();
 
     const defaultTitle = useRef(document.title);
@@ -27,12 +37,14 @@ const Core = React.memo(
         if (currentBoard) {
           title += ` | ${currentBoard.name}`;
         }
+      } else if (currentScheduler) {
+        title = currentScheduler.name;
       } else {
         title = defaultTitle.current;
       }
 
       document.title = title;
-    }, [currentProject, currentBoard]);
+    }, [currentProject, currentBoard, currentScheduler]);
 
     return (
       <>
@@ -47,11 +59,21 @@ const Core = React.memo(
                 imageUrl={currentProject.backgroundImage && currentProject.backgroundImage.url}
               />
             )}
+            {currentScheduler && currentScheduler.background && (
+              <Background
+                type={currentScheduler.background.type}
+                name={currentScheduler.background.name}
+                imageUrl={currentScheduler.backgroundImage && currentScheduler.backgroundImage.url}
+              />
+            )}
             <FixedContainer />
             <StaticContainer />
             {currentModal === ModalTypes.USERS && <UsersModalContainer />}
             {currentModal === ModalTypes.USER_SETTINGS && <UserSettingsModalContainer />}
             {currentModal === ModalTypes.PROJECT_ADD && <ProjectAddModalContainer />}
+            {currentModal === ModalTypes.SCHEDULER_ADD && <SchedulerAddModalContainer />}
+            {currentModal === ModalTypes.PROJECT_SETTINGS && <ProjectSettingsModalContainer />}
+            {currentModal === ModalTypes.SCHEDULER_SETTINGS && <SchedulerSettingsModalContainer />}
           </>
         )}
         {isSocketDisconnected && (
@@ -77,6 +99,8 @@ Core.propTypes = {
   currentModal: PropTypes.oneOf(Object.values(ModalTypes)),
   /* eslint-disable react/forbid-prop-types */
   currentProject: PropTypes.object,
+  /* eslint-disable react/forbid-prop-types */
+  currentScheduler: PropTypes.object,
   currentBoard: PropTypes.object,
   /* eslint-enable react/forbid-prop-types */
 };
@@ -84,6 +108,7 @@ Core.propTypes = {
 Core.defaultProps = {
   currentModal: undefined,
   currentProject: undefined,
+  currentScheduler: undefined,
   currentBoard: undefined,
 };
 

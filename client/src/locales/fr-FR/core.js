@@ -11,6 +11,10 @@ export default {
     longDateTime: "d MMMM 'à' p",
     fullDate: 'd MMM y',
     fullDateTime: "d MMMM y 'à' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {

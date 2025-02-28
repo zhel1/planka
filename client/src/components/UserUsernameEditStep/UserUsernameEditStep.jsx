@@ -26,6 +26,11 @@ const createMessage = (error) => {
         type: 'error',
         content: 'common.invalidCurrentPassword',
       };
+    case 'Action not possible for ldap users':
+      return {
+        type: 'error',
+        content: 'common.impossibleAction',
+      };
     default:
       return {
         type: 'warning',

@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const zxcvbn = require('zxcvbn');
 
 const { getRemoteAddress } = require('../../../utils/remoteAddress');
@@ -12,6 +12,9 @@ const Errors = {
   },
   INVALID_CURRENT_PASSWORD: {
     invalidCurrentPassword: 'Invalid current password',
+  },
+  IMPOSSIBLE_ACTION: {
+    impossibleAction: 'Action not possible for ldap users',
   },
 };
 
@@ -45,10 +48,17 @@ module.exports = {
     invalidCurrentPassword: {
       responseType: 'forbidden',
     },
+    impossibleAction: {
+      responseType: 'forbidden',
+    },
   },
 
   async fn(inputs) {
     const { currentSession, currentUser } = this.req;
+
+    if (currentUser.isLdap) {
+      throw Errors.IMPOSSIBLE_ACTION;
+    }
 
     if (inputs.id === currentUser.id) {
       if (!inputs.currentPassword) {

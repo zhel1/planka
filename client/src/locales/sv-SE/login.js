@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: 'E-mail eller användarnamn',
       invalidEmailOrUsername: 'Ogiltig e-mail eller användarnamn',
+      invalidLdap: 'LDAP-anslutningsfel',
       invalidPassword: 'Ogiltigt lösenord',
       logInToPlanka: 'Logga in på Planka',
       noInternetConnection: 'Ingen internetanslutning',

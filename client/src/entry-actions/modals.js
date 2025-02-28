@@ -22,10 +22,24 @@ const openProjectAddModal = () => ({
   },
 });
 
+const openSchedulerAddModal = () => ({
+  type: EntryActionTypes.MODAL_OPEN,
+  payload: {
+    type: ModalTypes.SCHEDULER_ADD,
+  },
+});
+
 const openProjectSettingsModal = () => ({
   type: EntryActionTypes.MODAL_OPEN,
   payload: {
     type: ModalTypes.PROJECT_SETTINGS,
+  },
+});
+
+const openSchedulerSettingsModal = () => ({
+  type: EntryActionTypes.MODAL_OPEN,
+  payload: {
+    type: ModalTypes.SCHEDULER_SETTINGS,
   },
 });
 
@@ -38,6 +52,8 @@ export default {
   openUsersModal,
   openUserSettingsModal,
   openProjectAddModal,
+  openSchedulerAddModal,
   openProjectSettingsModal,
+  openSchedulerSettingsModal,
   closeModal,
 };

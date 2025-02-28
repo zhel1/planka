@@ -78,6 +78,29 @@ module.exports.routes = {
   'POST /api/users/:id/avatar': 'users/update-avatar',
   'DELETE /api/users/:id': 'users/delete',
 
+  'GET /api/schedulers': 'schedulers/index',
+  'POST /api/schedulers': 'schedulers/create',
+  'GET /api/schedulers/:id': 'schedulers/show',
+  'PATCH /api/schedulers/:id': 'schedulers/update',
+  'POST /api/schedulers/:id/background-image': 'schedulers/update-background-image',
+  'DELETE /api/schedulers/:id': 'schedulers/delete',
+
+  'POST /api/schedulers/:schedulerId/managers': 'scheduler-managers/create',
+  'DELETE /api/scheduler-managers/:id': 'scheduler-managers/delete',
+
+  'POST /api/schedulers/:schedulerId/memberships': 'scheduler-memberships/create',
+  'PATCH /api/scheduler-memberships/:id': 'scheduler-memberships/update',
+  'DELETE /api/scheduler-memberships/:id': 'scheduler-memberships/delete',
+
+  'POST /api/schedulers/:schedulerId/labels': 'scheduler-labels/create',
+  'PATCH /api/scheduler-labels/:id': 'scheduler-labels/update',
+  'DELETE /api/scheduler-labels/:id': 'scheduler-labels/delete',
+
+  'POST /api/schedulers/:schedulerId/events': 'scheduler-events/create',
+  'GET /api/events/:id': 'scheduler-events/show',
+  'PATCH /api/events/:id': 'scheduler-events/update',
+  'DELETE /api/events/:id': 'scheduler-events/delete',
+
   'GET /api/projects': 'projects/index',
   'POST /api/projects': 'projects/create',
   'GET /api/projects/:id': 'projects/show',

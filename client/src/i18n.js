@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import formatDate from 'date-fns/format';
 import parseDate from 'date-fns/parse';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import { setDefaultOptions } from 'date-fns';
 
 import { embeddedLocales, languages } from './locales';
 
@@ -33,6 +34,10 @@ i18n.dateFns = {
 
 i18n.on('languageChanged', () => {
   setDefaultLocale(i18n.resolvedLanguage);
+  setDefaultOptions({
+    weekStartsOn: 1, // TODO to user settings
+    locale: i18n.dateFns.getLocale(),
+  });
 });
 
 const formatDatePostProcessor = {

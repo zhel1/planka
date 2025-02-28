@@ -68,6 +68,11 @@ module.exports = {
       defaultsTo: false,
       columnName: 'is_sso',
     },
+    isLdap: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'is_ldap',
+    },
     name: {
       type: 'string',
       required: true,
@@ -124,6 +129,16 @@ module.exports = {
       collection: 'Project',
       via: 'userId',
       through: 'ProjectManager',
+    },
+    managerSchedulers: {
+      collection: 'Scheduler',
+      via: 'userId',
+      through: 'SchedulerManager',
+    },
+    membershipSchedulers: {
+      collection: 'Scheduler',
+      via: 'userId',
+      through: 'SchedulerMembership',
     },
     membershipBoards: {
       collection: 'Board',

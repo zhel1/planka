@@ -89,5 +89,12 @@ export default function* usersWatchers() {
     takeEvery(EntryActionTypes.USER_FROM_FILTER_IN_CURRENT_BOARD_REMOVE, ({ payload: { id } }) =>
       services.removeUserFromFilterInCurrentBoard(id),
     ),
+    takeEvery(EntryActionTypes.USER_TO_FILTER_IN_CURRENT_SCHEDULER_ADD, ({ payload: { id } }) =>
+      services.addUserToFilterInCurrentScheduler(id),
+    ),
+    takeEvery(
+      EntryActionTypes.USER_FROM_FILTER_IN_CURRENT_SCHEDULER_REMOVE,
+      ({ payload: { id } }) => services.removeUserFromFilterInCurrentScheduler(id),
+    ),
   ]);
 }

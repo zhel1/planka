@@ -11,6 +11,7 @@ import globalStyles from '../../styles.module.scss';
 
 const SIZES = {
   TINY: 'tiny',
+  TINY_AUTO: 'tiny-auto',
   SMALL: 'small',
   MEDIUM: 'medium',
 };

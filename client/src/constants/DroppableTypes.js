@@ -3,6 +3,7 @@ const LABEL = 'LABEL';
 const LIST = 'LIST';
 const CARD = 'CARD';
 const TASK = 'TASK';
+const EVENT = 'EVENT';
 
 export default {
   BOARD,
@@ -10,4 +11,5 @@ export default {
   LIST,
   CARD,
   TASK,
+  EVENT,
 };

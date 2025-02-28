@@ -16,7 +16,12 @@ export function* handleSocketReconnect() {
 
   let user;
   let board;
+  let scheduler;
   let users;
+  let schedulers;
+  let schedulerManagers;
+  let schedulerMemberships;
+  let schedulerLabels;
   let projects;
   let projectManagers;
   let boards;
@@ -35,7 +40,12 @@ export function* handleSocketReconnect() {
     ({
       user,
       board,
+      scheduler,
       users,
+      schedulers,
+      schedulerManagers,
+      schedulerMemberships,
+      schedulerLabels,
       projects,
       projectManagers,
       boards,
@@ -58,7 +68,12 @@ export function* handleSocketReconnect() {
     actions.handleSocketReconnect(
       user,
       board,
+      scheduler,
       users,
+      schedulers,
+      schedulerManagers,
+      schedulerMemberships,
+      schedulerLabels,
       projects,
       projectManagers,
       boards,

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Header } from 'semantic-ui-react';
 
 import Paths from '../../constants/Paths';
 import { ProjectBackgroundTypes } from '../../constants/Enums';
@@ -19,6 +19,9 @@ const Projects = React.memo(({ items, canAdd, onAdd }) => {
 
   return (
     <Container className={styles.cardsWrapper}>
+      <Header inverted size="huge" className={styles.serviceTitle}>
+        {t('common.projects')}
+      </Header>
       <Grid className={styles.gridFix}>
         {items.map((item) => (
           <Grid.Column key={item.id} mobile={8} computer={4}>

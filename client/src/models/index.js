@@ -1,4 +1,9 @@
 import User from './User';
+import Scheduler from './Scheduler';
+import SchedulerManager from './SchedulerManager';
+import SchedulerMembership from './SchedulerMembership';
+import SchedulerLabel from './SchedulerLabel';
+import SchedulerEvent from './SchedulerEvent';
 import Project from './Project';
 import ProjectManager from './ProjectManager';
 import Board from './Board';
@@ -13,6 +18,11 @@ import Notification from './Notification';
 
 export {
   User,
+  Scheduler,
+  SchedulerManager,
+  SchedulerMembership,
+  SchedulerLabel,
+  SchedulerEvent,
   Project,
   ProjectManager,
   Board,

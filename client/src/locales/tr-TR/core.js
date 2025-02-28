@@ -11,6 +11,10 @@ export default {
     longDateTime: "d. MMMM 'Saat' p",
     fullDate: 'd. MMM. y',
     fullDateTime: "d. MMMM. y 'Saat' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -23,6 +27,7 @@ export default {
       addMember_title: 'Üye ekle',
       addUser_title: 'Kullanıcı ekle',
       administrator: 'Administrator',
+      ldap: 'ldap',
       all: 'Tümü',
       allChangesWillBeAutomaticallySavedAfterConnectionRestored:
         'Bağlantı yeniden kurulduğunda tüm değişiklikler kaydedilecektir.',
@@ -94,6 +99,7 @@ export default {
       fromComputer_title: 'Bilgisayardan',
       general: 'Genel',
       hours: 'saat',
+      impossibleAction: 'Eylem mümkün değil (LDAP)',
       invalidCurrentPassword: 'Mevcut şifre yanlış',
       labels: 'etiketler',
       language: 'dil',

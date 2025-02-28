@@ -1,0 +1,110 @@
+:global(#app) {
+  .day {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
+    position: relative;
+
+    &:hover {
+      .target {
+        opacity: 1;
+      }
+    }
+  }
+
+  .current_day {
+    border: 1px solid cornflowerblue;
+    background-color: lavender;
+  }
+
+  .selected_day {
+    border: 1px solid #77DD77;
+    background-color: #D8E2DC;
+  }
+
+  .current_selected_day {
+    border: 1px solid #6EB9B2;
+    background-color: #DFE4EB;
+  }
+
+  .space {
+    height: 30px;
+  }
+
+  .header {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .day_header {
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+    color: #999999;
+  }
+
+  .current_day_header {
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    color: #ffffff;
+    background-color: #a3c2ff;
+  }
+
+  .day_of_current_month {
+    color: black;
+  }
+
+  .day_body {
+    flex: 1 1 0;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .actionsButton {
+    background: none;
+    box-shadow: none;
+    border-radius: 3px;
+    box-sizing: content-box;
+    color: #798d99;
+    display: inline-block;
+    margin: 0;
+    min-height: auto;
+    opacity: 0;
+    outline: none;
+    padding: 4px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    transition: background 85ms ease;
+    width: 20px;
+
+    &:hover {
+      //background: #ebeef0;
+      color: #516b7a;
+    }
+  }
+
+  .moreButton {
+    background: none;
+    box-shadow: none;
+    border-radius: 3px;
+    box-sizing: content-box;
+    color: #798d99;
+    display: inline-block;
+    margin: 0;
+    min-height: auto;
+    outline: none;
+    padding: 4px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+  }
+}

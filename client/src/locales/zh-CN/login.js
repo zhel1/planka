@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: '邮箱或用户名',
       invalidEmailOrUsername: '无效的邮箱或用户名',
+      invalidLdap: 'LDAP 連線失敗。',
       invalidPassword: '密码错误',
       logInToPlanka: '登录至 Planka',
       noInternetConnection: '没有网络连接',

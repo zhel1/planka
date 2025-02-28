@@ -11,6 +11,10 @@ export default {
     longDateTime: "MMMMd'일 ' a hh시 mm분",
     fullDate: 'yyyy년M월d일',
     fullDateTime: 'yyyy년M월d일 a hh시 mm분',
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -101,6 +105,7 @@ export default {
       fromTrello: '트렐로에서',
       general: '일반',
       hours: '시',
+      impossibleAction: '조치가 불가능합니다 (LDAP)',
       importBoard_title: '보드 가져오기',
       invalidCurrentPassword: '현재 비밀번호가 일치하지 않습니다',
       labels: '라벨',

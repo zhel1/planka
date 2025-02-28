@@ -32,6 +32,62 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleUserDelete(item));
     });
 
+    const handleSchedulerCreate = ({ item }) => {
+      emit(entryActions.handleSchedulerCreate(item));
+    };
+
+    const handleSchedulerUpdate = ({ item }) => {
+      emit(entryActions.handleSchedulerUpdate(item));
+    };
+
+    const handleSchedulerDelete = ({ item }) => {
+      emit(entryActions.handleSchedulerDelete(item));
+    };
+
+    const handleSchedulerManagerCreate = api.makeHandleSchedulerManagerCreate(({ item }) => {
+      emit(entryActions.handleSchedulerManagerCreate(item));
+    });
+
+    const handleSchedulerManagerDelete = api.makeHandleSchedulerManagerDelete(({ item }) => {
+      emit(entryActions.handleSchedulerManagerDelete(item));
+    });
+
+    const handleSchedulerMembershipCreate = api.makeHandleSchedulerMembershipCreate(({ item }) => {
+      emit(entryActions.handleSchedulerMembershipCreate(item));
+    });
+
+    const handleSchedulerMembershipUpdate = api.makeHandleSchedulerMembershipUpdate(({ item }) => {
+      emit(entryActions.handleSchedulerMembershipUpdate(item));
+    });
+
+    const handleSchedulerMembershipDelete = api.makeHandleSchedulerMembershipDelete(({ item }) => {
+      emit(entryActions.handleSchedulerMembershipDelete(item));
+    });
+
+    const handleSchedulerLabelCreate = ({ item }) => {
+      emit(entryActions.handleSchedulerLabelCreate(item));
+    };
+
+    const handleSchedulerLabelUpdate = ({ item }) => {
+      emit(entryActions.handleSchedulerLabelUpdate(item));
+    };
+
+    const handleSchedulerLabelDelete = ({ item }) => {
+      emit(entryActions.handleSchedulerLabelDelete(item));
+    };
+
+    const handleSchedulerEventCreate = api.makeHandleSchedulerEventCreate(({ item }) => {
+      emit(entryActions.handleSchedulerEventCreate(item));
+    });
+
+    const handleSchedulerEventUpdate = api.makeHandleSchedulerEventUpdate(({ item }) => {
+      emit(entryActions.handleSchedulerEventUpdate(item));
+    });
+
+    const handleSchedulerEventDelete = api.makeHandleSchedulerEventDelete(({ item }) => {
+      emit(entryActions.handleSchedulerEventDelete(item));
+    });
+
     const handleProjectCreate = ({ item }) => {
       emit(entryActions.handleProjectCreate(item));
     };
@@ -185,6 +241,25 @@ const createSocketEventsChannel = () =>
     socket.on('userUpdate', handleUserUpdate);
     socket.on('userDelete', handleUserDelete);
 
+    socket.on('schedulerCreate', handleSchedulerCreate);
+    socket.on('schedulerUpdate', handleSchedulerUpdate);
+    socket.on('schedulerDelete', handleSchedulerDelete);
+
+    socket.on('schedulerManagerCreate', handleSchedulerManagerCreate);
+    socket.on('schedulerManagerDelete', handleSchedulerManagerDelete);
+
+    socket.on('schedulerMembershipCreate', handleSchedulerMembershipCreate);
+    socket.on('schedulerMembershipUpdate', handleSchedulerMembershipUpdate);
+    socket.on('schedulerMembershipDelete', handleSchedulerMembershipDelete);
+
+    socket.on('schedulerLabelCreate', handleSchedulerLabelCreate);
+    socket.on('schedulerLabelUpdate', handleSchedulerLabelUpdate);
+    socket.on('schedulerLabelDelete', handleSchedulerLabelDelete);
+
+    socket.on('schedulerEventCreate', handleSchedulerEventCreate);
+    socket.on('schedulerEventUpdate', handleSchedulerEventUpdate);
+    socket.on('schedulerEventDelete', handleSchedulerEventDelete);
+
     socket.on('projectCreate', handleProjectCreate);
     socket.on('projectUpdate', handleProjectUpdate);
     socket.on('projectDelete', handleProjectDelete);
@@ -243,6 +318,25 @@ const createSocketEventsChannel = () =>
       socket.off('userCreate', handleUserCreate);
       socket.off('userUpdate', handleUserUpdate);
       socket.off('userDelete', handleUserDelete);
+
+      socket.off('schedulerCreate', handleSchedulerCreate);
+      socket.off('schedulerUpdate', handleSchedulerUpdate);
+      socket.off('schedulerDelete', handleSchedulerDelete);
+
+      socket.off('schedulerManagerCreate', handleSchedulerManagerCreate);
+      socket.off('schedulerManagerDelete', handleSchedulerManagerDelete);
+
+      socket.off('schedulerMembershipCreate', handleSchedulerMembershipCreate);
+      socket.off('schedulerMembershipUpdate', handleSchedulerMembershipUpdate);
+      socket.off('schedulerMembershipDelete', handleSchedulerMembershipDelete);
+
+      socket.off('schedulerLabelCreate', handleSchedulerLabelCreate);
+      socket.off('schedulerLabelUpdate', handleSchedulerLabelUpdate);
+      socket.off('schedulerLabelDelete', handleSchedulerLabelDelete);
+
+      socket.off('schedulerEventCreate', handleSchedulerEventCreate);
+      socket.off('schedulerEventUpdate', handleSchedulerEventUpdate);
+      socket.off('schedulerEventDelete', handleSchedulerEventDelete);
 
       socket.off('projectCreate', handleProjectCreate);
       socket.off('projectUpdate', handleProjectUpdate);

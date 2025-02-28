@@ -95,9 +95,29 @@ export const selectIsCurrentUserManagerForCurrentProject = createSelector(
   },
 );
 
+export const selectIsCurrentUserManagerForCurrentScheduler = createSelector(
+  orm,
+  (state) => selectPath(state).schedulerId,
+  (state) => selectCurrentUserId(state),
+  ({ Scheduler }, id, currentUserId) => {
+    if (!id) {
+      return false;
+    }
+
+    const schedulerModel = Scheduler.withId(id);
+
+    if (!schedulerModel) {
+      return false;
+    }
+
+    return schedulerModel.hasManagerForUser(currentUserId);
+  },
+);
+
 export default {
   selectCurrentProject,
   selectManagersForCurrentProject,
   selectBoardsForCurrentProject,
   selectIsCurrentUserManagerForCurrentProject,
+  selectIsCurrentUserManagerForCurrentScheduler,
 };

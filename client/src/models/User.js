@@ -44,6 +44,7 @@ export default class extends BaseModel {
     language: attr(),
     subscribeToOwnCards: attr(),
     isAdmin: attr(),
+    isLdap: attr(),
     isLocked: attr(),
     isRoleLocked: attr(),
     isUsernameLocked: attr(),
@@ -305,6 +306,14 @@ export default class extends BaseModel {
     return this.projectManagers.orderBy('createdAt');
   }
 
+  getOrderedSchedulerManagersQuerySet() {
+    return this.schedulerManagers.orderBy('createdAt');
+  }
+
+  getOrderedSchedulerMembershipsQuerySet() {
+    return this.schedulerMemberships.orderBy('createdAt');
+  }
+
   getOrderedBoardMembershipsQuerySet() {
     return this.boardMemberships.orderBy('createdAt');
   }
@@ -342,8 +351,54 @@ export default class extends BaseModel {
     return projectModels;
   }
 
+  // getOrderedAvailableSchedulersModelArray() // const schedulerIds = [];
+  //
+  // const schedulerModels = this.getOrderedSchedulerManagersQuerySet()
+  //   .toModelArray()
+  //   .map(({ scheduler: schedulerModel }) => {
+  //     schedulerIds.push(schedulerModel.id);
+  //
+  //     return schedulerModel;
+  //   });
+  //
+  // return schedulerModels;
+
+  //   return this.getOrderedSchedulerManagersQuerySet()
+  //     .toModelArray()
+  //     .map(({ scheduler: schedulerModel }) => {
+  //       return schedulerModel;
+  //     });
+  // }
+
+  getOrderedAvailableSchedulersModelArray() {
+    const schedulerIds = [];
+
+    const schedulerModels = this.getOrderedSchedulerManagersQuerySet()
+      .toModelArray()
+      .map(({ scheduler: schedulerModel }) => {
+        schedulerIds.push(schedulerModel.id);
+
+        return schedulerModel;
+      });
+
+    this.getOrderedSchedulerMembershipsQuerySet()
+      .toModelArray()
+      .forEach(({ scheduler: schedulerModel }) => {
+        if (schedulerIds.includes(schedulerModel.id)) {
+          return;
+        }
+
+        schedulerIds.push(schedulerModel.id);
+        schedulerModels.push(schedulerModel);
+      });
+
+    return schedulerModels;
+  }
+
   deleteRelated() {
     this.projectManagers.delete();
+    this.schedulerManagers.delete();
+    this.schedulerMemberships.delete();
 
     this.boardMemberships.toModelArray().forEach((boardMembershipModel) => {
       boardMembershipModel.deleteWithRelated();

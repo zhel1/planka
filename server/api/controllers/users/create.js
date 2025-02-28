@@ -80,6 +80,8 @@ module.exports = {
     const values = _.pick(inputs, [
       'email',
       'password',
+      'isAdmin',
+      'isLdap',
       'name',
       'username',
       'phone',

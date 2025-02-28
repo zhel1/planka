@@ -20,9 +20,36 @@ export const selectPath = createReduxOrmSelector(
   orm,
   selectPathsMatch,
   (state) => selectCurrentUserId(state),
-  ({ Project, Board, Card }, pathsMatch, currentUserId) => {
+  ({ Scheduler, SchedulerEvent, Project, Board, Card }, pathsMatch, currentUserId) => {
     if (pathsMatch) {
       switch (pathsMatch.pattern.path) {
+        case Paths.SCHEDULERS: {
+          const schedulerModel = Scheduler.withId(pathsMatch.params.id);
+
+          if (!schedulerModel || !schedulerModel.isAvailableForUser(currentUserId)) {
+            return {
+              schedulerId: null,
+            };
+          }
+
+          return {
+            schedulerId: schedulerModel.id,
+          };
+        }
+        case Paths.EVENTS: {
+          const schedulerEventModel = SchedulerEvent.withId(pathsMatch.params.id);
+          if (!schedulerEventModel || !schedulerEventModel.isAvailableForUser(currentUserId)) {
+            return {
+              schedulerId: null,
+              schedulerEventId: null,
+            };
+          }
+
+          return {
+            schedulerEventId: schedulerEventModel.id,
+            schedulerId: schedulerEventModel.schedulerId,
+          };
+        }
         case Paths.PROJECTS: {
           const projectModel = Project.withId(pathsMatch.params.id);
 

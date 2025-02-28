@@ -25,4 +25,9 @@
     line-height: 1.2;
     margin-bottom: 8px;
   }
+
+  .servicesContainer {
+    display: flex;
+    flex-direction: row;
+  }
 }

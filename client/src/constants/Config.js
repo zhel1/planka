@@ -16,6 +16,8 @@ const ACCESS_TOKEN_VERSION = '1';
 const POSITION_GAP = 65535;
 const ACTIVITIES_LIMIT = 50;
 
+const SCHEDULER_SIDE_BAR_OPENED = 'schedulerSideBarOpened';
+
 export default {
   BASE_PATH,
   SERVER_BASE_URL,
@@ -26,4 +28,5 @@ export default {
   ACCESS_TOKEN_VERSION,
   POSITION_GAP,
   ACTIVITIES_LIMIT,
+  SCHEDULER_SIDE_BAR_OPENED,
 };

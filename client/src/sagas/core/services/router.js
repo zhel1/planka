@@ -9,6 +9,7 @@ import api from '../../../api';
 import { getAccessToken } from '../../../utils/access-token-storage';
 import ActionTypes from '../../../constants/ActionTypes';
 import Paths from '../../../constants/Paths';
+import mergeRecords from '../../../utils/merge-records';
 
 export function* goToRoot() {
   yield put(push(Paths.ROOT));
@@ -24,6 +25,14 @@ export function* goToBoard(boardId) {
 
 export function* goToCard(cardId) {
   yield put(push(Paths.CARDS.replace(':id', cardId)));
+}
+
+export function* goToScheduler(schedulerId) {
+  yield put(push(Paths.SCHEDULERS.replace(':id', schedulerId)));
+}
+
+export function* goToEvent(eventId) {
+  yield put(push(Paths.EVENTS.replace(':id', eventId)));
 }
 
 export function* handleLocationChange() {
@@ -56,7 +65,7 @@ export function* handleLocationChange() {
   }
 
   let board;
-  let users;
+  let users1;
   let projects;
   let boardMemberships;
   let labels;
@@ -67,6 +76,13 @@ export function* handleLocationChange() {
   let tasks;
   let attachments;
   let deletedNotifications;
+
+  let scheduler;
+  let users2;
+  let schedulerManagers;
+  let schedulerMemberships;
+  let schedulerLabels;
+  let schedulerEvents;
 
   switch (pathsMatch.pattern.path) {
     case Paths.BOARDS:
@@ -80,7 +96,7 @@ export function* handleLocationChange() {
           ({
             item: board,
             included: {
-              users,
+              users1,
               projects,
               boardMemberships,
               labels,
@@ -114,13 +130,47 @@ export function* handleLocationChange() {
 
       break;
     }
+    case Paths.SCHEDULERS: {
+      const currentScheduler = yield select(selectors.selectCurrentScheduler);
+      // TODO* check isFetching
+      if (currentScheduler && currentScheduler.isFetching === null) {
+        yield put(actions.handleLocationChange.fetchScheduler(currentScheduler.id));
+
+        try {
+          ({
+            item: scheduler,
+            included: {
+              users2,
+              schedulerManagers,
+              schedulerMemberships,
+              schedulerLabels,
+              schedulerEvents,
+              // lists,
+              // cards,
+              // cardMemberships,
+              // cardLabels,
+              // tasks,
+              // attachments,
+            },
+          } = yield call(request, api.getScheduler, currentScheduler.id));
+        } catch (error) {
+          console.log('SHEDULER-API', error);
+        } // eslint-disable-line no-empty
+      }
+      break;
+    }
     default:
   }
 
   yield put(
     actions.handleLocationChange(
+      scheduler,
+      schedulerManagers,
+      schedulerMemberships,
+      schedulerLabels,
+      schedulerEvents,
       board,
-      users,
+      mergeRecords(users1, users2),
       projects,
       boardMemberships,
       labels,
@@ -140,5 +190,6 @@ export default {
   goToProject,
   goToBoard,
   goToCard,
+  goToScheduler,
   handleLocationChange,
 };

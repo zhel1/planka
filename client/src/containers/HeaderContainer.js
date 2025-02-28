@@ -4,28 +4,48 @@ import { connect } from 'react-redux';
 import selectors from '../selectors';
 import entryActions from '../entry-actions';
 import Header from '../components/Header';
+import ServiceTypes from '../constants/ServiceTypes';
 
 const mapStateToProps = (state) => {
   const isLogouting = selectors.selectIsLogouting(state);
   const currentUser = selectors.selectCurrentUser(state);
-  const currentProject = selectors.selectCurrentProject(state);
   const notifications = selectors.selectNotificationsForCurrentUser(state);
-  const isCurrentUserManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
+
+  let service = selectors.selectCurrentScheduler(state);
+  let canEditService;
+
+  if (service) {
+    canEditService = selectors.selectIsCurrentUserManagerForCurrentScheduler(state);
+  } else {
+    service = selectors.selectCurrentProject(state);
+    canEditService = selectors.selectIsCurrentUserManagerForCurrentProject(state);
+  }
 
   return {
     notifications,
     isLogouting,
-    project: currentProject,
     user: currentUser,
-    canEditProject: isCurrentUserManager,
     canEditUsers: currentUser.isAdmin,
+    service,
+    canEditService,
   };
 };
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
+const mapDispatchToProps = (dispatch, { currentService }) => {
+  let onServiceSettingsClick = entryActions.openProjectSettingsModal;
+  switch (currentService) {
+    case ServiceTypes.KANBAN:
+      onServiceSettingsClick = entryActions.openProjectSettingsModal;
+      break;
+    case ServiceTypes.SCHEDULER:
+      onServiceSettingsClick = entryActions.openSchedulerSettingsModal;
+      break;
+    default:
+  }
+
+  return bindActionCreators(
     {
-      onProjectSettingsClick: entryActions.openProjectSettingsModal,
+      onServiceSettingsClick,
       onUsersClick: entryActions.openUsersModal,
       onNotificationDelete: entryActions.deleteNotification,
       onUserSettingsClick: entryActions.openUserSettingsModal,
@@ -33,5 +53,6 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch,
   );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

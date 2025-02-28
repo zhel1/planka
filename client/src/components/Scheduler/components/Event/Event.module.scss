@@ -1,0 +1,90 @@
+.dayyy {
+  position: sticky;
+  //background-color: pink;
+  z-index: 1;
+
+  padding: 0.25rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.75rem;
+  border-radius: 0.35rem;
+  font-size: 0.875rem;
+  color: #232d3b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+:global(#app) {
+  .event {
+    width: 100%;
+    line-height: 1.25rem;
+
+    // for beautiful dnd
+    top: auto !important;
+    left: auto !important;
+  }
+
+  //.event {
+  //  width: 100%;
+  //  line-height: 20px;
+  //}
+
+  .eventName {
+    width: 95%;
+    margin-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .eventMarker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  .day0 {
+    @extend .dayyy;
+    width: 100%;
+  }
+
+  .day1 {
+    @extend .dayyy;
+    width: 100%;
+  }
+
+  .day2 {
+    @extend .dayyy;
+    width: 200%;
+  }
+
+  .day3 {
+    @extend .dayyy;
+    width: 300%;
+  }
+
+  .day4 {
+    @extend .dayyy;
+    width: 400%;
+  }
+
+  .day5 {
+    @extend .dayyy;
+    width: 500%;
+  }
+
+  .day6 {
+    @extend .dayyy;
+    width: 600%;
+  }
+
+  .day7 {
+    @extend .dayyy;
+    width: 700%;
+  }
+}

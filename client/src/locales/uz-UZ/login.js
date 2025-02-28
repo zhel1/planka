@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: 'E-mail yoki foydalanuvchi nomi',
       invalidEmailOrUsername: "Noto'g'ri e-mail yoki foydalanuvchi nomi",
+      invalidLdap: 'LDAP ulanish xatosi',
       invalidPassword: "Noto'g'ri parol",
       logInToPlanka: 'Planka ga Kirish',
       noInternetConnection: "Internet bog'lanishi yo'q",

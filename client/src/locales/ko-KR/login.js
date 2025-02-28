@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: '이메일 혹은 사용자 이름',
       invalidEmailOrUsername: '이메일 혹은 사용자 이름이 유효하지 않습니다',
+      invalidLdap: 'LDAP 연결 실패',
       invalidPassword: '유효하지 않은 비밀번호',
       logInToPlanka: 'Planka에 로그인',
       noInternetConnection: '인터넷 연결이 없음',

@@ -3,6 +3,11 @@ import socket from './socket';
 import root from './root';
 import accessTokens from './access-tokens';
 import users from './users';
+import schedulers from './schedulers';
+import schedulerManagers from './scheduler-managers';
+import schedulerMemberships from './scheduler-memberships';
+import schedulerLabels from './scheduler-labels';
+import schedulerEvents from './scheduler-events';
 import projects from './projects';
 import projectManagers from './project-managers';
 import boards from './boards';
@@ -24,6 +29,11 @@ export default {
   ...root,
   ...accessTokens,
   ...users,
+  ...schedulers,
+  ...schedulerManagers,
+  ...schedulerMemberships,
+  ...schedulerLabels,
+  ...schedulerEvents,
   ...projects,
   ...projectManagers,
   ...boards,

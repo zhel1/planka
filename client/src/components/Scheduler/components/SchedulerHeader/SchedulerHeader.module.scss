@@ -1,0 +1,33 @@
+:global(#app) {
+  .scheduler_header {
+    background: rgba(200, 200, 200, 0.99);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    align-items: center;
+    flex-direction: row;
+    flex: 1 0 auto;
+
+    i {
+      vertical-align: top;
+      padding: 0;
+    }
+  }
+
+  .text {
+    display: inline-block;
+    margin: 0;
+    min-width: 8em;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .button {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    min-width: 3rem;
+  }
+}

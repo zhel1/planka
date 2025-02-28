@@ -63,6 +63,26 @@ export const selectNextLabelPosition = createSelector(
   },
 );
 
+export const selectNextSchedulerLabelPosition = createSelector(
+  orm,
+  (_, schedulerId) => schedulerId,
+  (_, __, index) => index,
+  (_, __, ___, excludedId) => excludedId,
+  ({ Scheduler }, schedulerId, index, excludedId) => {
+    const schedulerModel = Scheduler.withId(schedulerId);
+
+    if (!schedulerModel) {
+      return schedulerModel;
+    }
+
+    return nextPosition(
+      schedulerModel.getOrderedSchedulerLabelsQuerySet().toRefArray(),
+      index,
+      excludedId,
+    );
+  },
+);
+
 export const selectNextListPosition = createSelector(
   orm,
   (_, boardId) => boardId,
@@ -116,6 +136,7 @@ export default {
   selectIsLogouting,
   selectNextBoardPosition,
   selectNextLabelPosition,
+  selectNextSchedulerLabelPosition,
   selectNextListPosition,
   selectNextCardPosition,
   selectNextTaskPosition,

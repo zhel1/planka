@@ -296,6 +296,26 @@ export function* removeUserFromFilterInCurrentBoard(id) {
   yield call(removeUserFromBoardFilter, id, boardId);
 }
 
+export function* addUserToSchedulerFilter(id, schedulerId) {
+  yield put(actions.addUserToSchedulerFilter(id, schedulerId));
+}
+
+export function* addUserToFilterInCurrentScheduler(id) {
+  const { schedulerId } = yield select(selectors.selectPath);
+
+  yield call(addUserToSchedulerFilter, id, schedulerId);
+}
+
+export function* removeUserFromSchedulerFilter(id, schedulerId) {
+  yield put(actions.removeUserFromSchedulerFilter(id, schedulerId));
+}
+
+export function* removeUserFromFilterInCurrentScheduler(id) {
+  const { schedulerId } = yield select(selectors.selectPath);
+
+  yield call(removeUserFromSchedulerFilter, id, schedulerId);
+}
+
 export default {
   createUser,
   handleUserCreate,
@@ -331,4 +351,9 @@ export default {
   addUserToFilterInCurrentBoard,
   removeUserFromBoardFilter,
   removeUserFromFilterInCurrentBoard,
+
+  addUserToSchedulerFilter,
+  addUserToFilterInCurrentScheduler,
+  removeUserFromSchedulerFilter,
+  removeUserFromFilterInCurrentScheduler,
 };

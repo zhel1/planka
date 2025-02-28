@@ -11,6 +11,10 @@ export default {
     longDateTime: "d MMMM 'alle' p",
     fullDate: 'd MMM, y',
     fullDateTime: "d MMMM, y 'alle' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -103,6 +107,7 @@ export default {
       fromTrello: 'Da Trello',
       general: 'Generale',
       hours: 'Ore',
+      impossibleAction: "L'azione non è possibile (LDAP)",
       importBoard_title: 'Importa Board',
       invalidCurrentPassword: 'Password corrente non valida',
       labels: 'Etichette',

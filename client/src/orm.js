@@ -11,6 +11,11 @@ import {
   Notification,
   Project,
   ProjectManager,
+  Scheduler,
+  SchedulerManager,
+  SchedulerMembership,
+  SchedulerLabel,
+  SchedulerEvent,
   Task,
   User,
 } from './models';
@@ -21,6 +26,11 @@ const orm = new ORM({
 
 orm.register(
   User,
+  Scheduler,
+  SchedulerManager,
+  SchedulerMembership,
+  SchedulerLabel,
+  SchedulerEvent,
   Project,
   ProjectManager,
   Board,

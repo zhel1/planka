@@ -11,6 +11,10 @@ export default {
     longDateTime: "d. MMMM 'um' p",
     fullDate: 'd. MMM. y',
     fullDateTime: "d. MMMM. y 'um' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -99,6 +103,7 @@ export default {
       fromComputer_title: 'Vom Computer',
       general: 'Allgemein',
       hours: 'Stunden',
+      impossibleAction: 'Aktion ist nicht möglich (LDAP)',
       invalidCurrentPassword: 'Das aktuelle Passwort ist falsch',
       labels: 'Labels',
       language: 'Sprache',

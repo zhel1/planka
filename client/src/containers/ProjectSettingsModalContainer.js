@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import selectors from '../selectors';
 import entryActions from '../entry-actions';
-import ProjectSettingsModal from '../components/ProjectSettingsModal';
+import ServiceSettingsModal from '../components/ServiceSettingsModal';
+import ServiceTypes from '../constants/ServiceTypes';
 
 const mapStateToProps = (state) => {
   const users = selectors.selectUsers(state);
@@ -13,7 +14,10 @@ const mapStateToProps = (state) => {
 
   const managers = selectors.selectManagersForCurrentProject(state);
 
+  const serviceType = ServiceTypes.KANBAN;
+
   return {
+    serviceType,
     name,
     background,
     backgroundImage,
@@ -36,4 +40,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch,
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectSettingsModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ServiceSettingsModal);

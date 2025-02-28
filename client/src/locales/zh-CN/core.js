@@ -11,6 +11,10 @@ export default {
     longDateTime: "MMMM d 'at' p",
     fullDate: 'MMM d, y',
     fullDateTime: "MMMM d, y 'at' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -99,6 +103,7 @@ export default {
       fromTrello: '来自 Trello',
       general: '全体',
       hours: '小时',
+      impossibleAction: '行動是不可能的。 (LDAP)',
       importBoard_title: '导入面板',
       invalidCurrentPassword: '当前密码错误',
       labels: '标签',

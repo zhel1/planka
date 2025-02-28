@@ -3,7 +3,17 @@ export const ProjectBackgroundTypes = {
   IMAGE: 'image',
 };
 
+export const SchedulerBackgroundTypes = {
+  GRADIENT: 'gradient',
+  IMAGE: 'image',
+};
+
 export const BoardMembershipRoles = {
+  EDITOR: 'editor',
+  VIEWER: 'viewer',
+};
+
+export const SchedulerMembershipRoles = {
   EDITOR: 'editor',
   VIEWER: 'viewer',
 };
@@ -19,4 +29,10 @@ export const ActivityTypes = {
   CREATE_CARD: 'createCard',
   MOVE_CARD: 'moveCard',
   COMMENT_CARD: 'commentCard',
+};
+
+export const DaysOfWeek = {
+  DAY: 'day',
+  WEEKEND_DAY: 'weekend_day',
+  WEEKDAY: 'weekday',
 };

@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import styles from './User.module.scss';
 
 const SIZES = {
+  NANO: 'nano',
   TINY: 'tiny',
   SMALL: 'small',
   MEDIUM: 'medium',

@@ -11,6 +11,10 @@ export default {
     longDateTime: "MMMM d 'at' p",
     fullDate: 'MMM d, y',
     fullDateTime: "MMMM d, y 'at' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -92,6 +96,7 @@ export default {
       fromComputer_title: 'Kompyuterdan',
       general: 'Umumiy',
       hours: 'Soat',
+      impossibleAction: 'Harakat qilish mumkin emas (LDAP)',
       invalidCurrentPassword: 'Hozirgi parol xato',
       labels: 'Yorliqlar',
       leaveBoard_title: 'Doskadan Chiqish',

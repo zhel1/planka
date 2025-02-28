@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Menu } from 'semantic-ui-react';
+import { format } from 'date-fns';
 import { usePopup } from '../../lib/popup';
 
 import Paths from '../../constants/Paths';
@@ -18,36 +19,45 @@ const POPUP_PROPS = {
 
 const Header = React.memo(
   ({
-    project,
+    service,
     user,
     notifications,
     isLogouting,
-    canEditProject,
+    canEditService,
     canEditUsers,
-    onProjectSettingsClick,
+    onServiceSettingsClick,
     onUsersClick,
     onNotificationDelete,
     onUserSettingsClick,
     onLogout,
   }) => {
-    const handleProjectSettingsClick = useCallback(() => {
-      if (canEditProject) {
-        onProjectSettingsClick();
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setTime(new Date());
+      }, 1000);
+      return () => clearInterval(interval);
+    }, [time]);
+
+    const handleServiceSettingsClick = useCallback(() => {
+      if (canEditService) {
+        onServiceSettingsClick();
       }
-    }, [canEditProject, onProjectSettingsClick]);
+    }, [canEditService, onServiceSettingsClick]);
 
     const NotificationsPopup = usePopup(NotificationsStep, POPUP_PROPS);
     const UserPopup = usePopup(UserStep, POPUP_PROPS);
 
     return (
       <div className={styles.wrapper}>
-        {!project && (
+        {!service && (
           <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
             Planka
           </Link>
         )}
         <Menu inverted size="large" className={styles.menu}>
-          {project && (
+          {service && (
             <Menu.Menu position="left">
               <Menu.Item
                 as={Link}
@@ -57,11 +67,11 @@ const Header = React.memo(
                 <Icon fitted name="arrow left" />
               </Menu.Item>
               <Menu.Item className={classNames(styles.item, styles.title)}>
-                {project.name}
-                {canEditProject && (
+                {service.name}
+                {canEditService && (
                   <Button
                     className={classNames(styles.editButton, styles.target)}
-                    onClick={handleProjectSettingsClick}
+                    onClick={handleServiceSettingsClick}
                   >
                     <Icon fitted name="pencil" size="small" />
                   </Button>
@@ -70,6 +80,9 @@ const Header = React.memo(
             </Menu.Menu>
           )}
           <Menu.Menu position="right">
+            <Menu.Item className={classNames(styles.item, styles.clock)}>
+              {format(time, 'HH:mm')}
+            </Menu.Item>
             {canEditUsers && (
               <Menu.Item
                 className={classNames(styles.item, styles.itemHoverable)}
@@ -105,14 +118,14 @@ const Header = React.memo(
 
 Header.propTypes = {
   /* eslint-disable react/forbid-prop-types */
-  project: PropTypes.object,
+  service: PropTypes.object,
   user: PropTypes.object.isRequired,
   notifications: PropTypes.array.isRequired,
   /* eslint-enable react/forbid-prop-types */
   isLogouting: PropTypes.bool.isRequired,
-  canEditProject: PropTypes.bool.isRequired,
+  canEditService: PropTypes.bool.isRequired,
   canEditUsers: PropTypes.bool.isRequired,
-  onProjectSettingsClick: PropTypes.func.isRequired,
+  onServiceSettingsClick: PropTypes.func.isRequired,
   onUsersClick: PropTypes.func.isRequired,
   onNotificationDelete: PropTypes.func.isRequired,
   onUserSettingsClick: PropTypes.func.isRequired,
@@ -120,7 +133,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  project: undefined,
+  service: undefined,
 };
 
 export default Header;

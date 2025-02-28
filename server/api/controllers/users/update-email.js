@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const Errors = {
   NOT_ENOUGH_RIGHTS: {
@@ -12,6 +12,9 @@ const Errors = {
   },
   EMAIL_ALREADY_IN_USE: {
     emailAlreadyInUse: 'Email already in use',
+  },
+  IMPOSSIBLE_ACTION: {
+    impossibleAction: 'Action not possible for ldap users',
   },
 };
 
@@ -46,10 +49,16 @@ module.exports = {
     emailAlreadyInUse: {
       responseType: 'conflict',
     },
+    impossibleAction: {
+      responseType: 'forbidden',
+    },
   },
-
   async fn(inputs) {
     const { currentUser } = this.req;
+
+    if (currentUser.isLdap) {
+      throw Errors.IMPOSSIBLE_ACTION;
+    }
 
     if (inputs.id === currentUser.id) {
       if (!inputs.currentPassword) {

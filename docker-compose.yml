@@ -2,7 +2,7 @@ version: '3'
 
 services:
   planka:
-    image: ghcr.io/plankanban/planka:latest
+    image: ghcr.io/plankanban/planka:local
     restart: on-failure
     volumes:
       - user-avatars:/app/public/user-avatars
@@ -14,6 +14,8 @@ services:
       - BASE_URL=http://localhost:3000
       - DATABASE_URL=postgresql://postgres@postgres/planka
       - SECRET_KEY=notsecretkey
+      - LDAP_SERVER=ldap.com:389
+      - LDAP_BASE_DN=ou=MailUsers,dc=mail,dc=com
 
       # - TRUST_PROXY=0
       # - TOKEN_EXPIRES_IN=365 # In days

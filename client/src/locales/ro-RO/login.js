@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: 'E-mail sau nume de utilizator',
       invalidEmailOrUsername: 'E-mail sau nume de utilizator introduse greșit',
+      invalidLdap: 'Eroare de conexiune LDAP',
       invalidPassword: 'Parola greșita',
       logInToPlanka: 'Autentificarea în Planka',
       noInternetConnection: 'Lipsește conexiunea cu internet',

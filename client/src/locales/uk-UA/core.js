@@ -11,6 +11,10 @@ export default {
     longDateTime: "d MMMM 'о' p",
     fullDate: 'd MMMM y',
     fullDateTime: "d MMMM y 'о' p",
+    monthYear: 'LLLL yyyy',
+    month: 'LLLL',
+    ofMonth: 'MMMM',
+    weekShort: 'EEEEEE',
   },
 
   translation: {
@@ -102,6 +106,7 @@ export default {
       fromTrello: 'З Trello',
       general: 'Загальне',
       hours: 'Години',
+      impossibleAction: 'Дія неможлива (LDAP)',
       importBoard_title: 'Імпортувати Дошку',
       invalidCurrentPassword: 'Невірний поточний пароль',
       labels: 'Мітки',

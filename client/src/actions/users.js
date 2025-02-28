@@ -286,6 +286,22 @@ const removeUserFromBoardFilter = (id, boardId) => ({
   },
 });
 
+const addUserToSchedulerFilter = (id, schedulerId) => ({
+  type: ActionTypes.USER_TO_SCHEDULER_FILTER_ADD,
+  payload: {
+    id,
+    schedulerId,
+  },
+});
+
+const removeUserFromSchedulerFilter = (id, schedulerId) => ({
+  type: ActionTypes.USER_FROM_SCHEDULER_FILTER_REMOVE,
+  payload: {
+    id,
+    schedulerId,
+  },
+});
+
 export default {
   createUser,
   handleUserCreate,
@@ -307,4 +323,6 @@ export default {
   handleUserFromCardRemove,
   addUserToBoardFilter,
   removeUserFromBoardFilter,
+  addUserToSchedulerFilter,
+  removeUserFromSchedulerFilter,
 };

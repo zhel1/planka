@@ -32,6 +32,7 @@ module.exports.custom = {
 
   userAvatarsPathSegment: 'public/user-avatars',
   projectBackgroundImagesPathSegment: 'public/project-background-images',
+  schedulerBackgroundImagesPathSegment: 'public/scheduler-background-images',
   attachmentsPathSegment: 'private/attachments',
 
   defaultAdminEmail:

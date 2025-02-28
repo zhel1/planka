@@ -21,7 +21,13 @@ export function* initializeCore() {
   const {
     user,
     board,
+    scheduler,
     users,
+    schedulers,
+    schedulerManagers,
+    schedulerMemberships,
+    schedulerLabels,
+    schedulerEvents,
     projects,
     projectManagers,
     boards,
@@ -37,14 +43,20 @@ export function* initializeCore() {
     notifications,
   } = yield call(requests.fetchCore); // TODO: handle error
 
-  yield call(i18n.changeLanguage, user.language);
   yield call(i18n.loadCoreLocale);
+  yield call(i18n.changeLanguage, user.language);
 
   yield put(
     actions.initializeCore(
       user,
       board,
+      scheduler,
       users,
+      schedulers,
+      schedulerManagers,
+      schedulerMemberships,
+      schedulerLabels,
+      schedulerEvents,
       projects,
       projectManagers,
       boards,

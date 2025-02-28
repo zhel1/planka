@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: 'E-mail eller brugernavn',
       invalidEmailOrUsername: 'Ugyldig e-mail eller brugernavn',
+      invalidLdap: 'LDAP-forbindelsesfejl',
       invalidPassword: 'Ugyldig løsen',
       logInToPlanka: 'Log på Planka',
       noInternetConnection: 'Ingen forbindelse til internettet',

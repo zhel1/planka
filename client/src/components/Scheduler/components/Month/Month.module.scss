@@ -1,0 +1,29 @@
+:global(#app) {
+  .month {
+    //display: grid;
+    //grid-template-columns:
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .month_header {
+    display: flex;
+    margin: 0;
+  }
+
+  .month_body {
+    background: white;
+    display: grid;
+    flex: 1 1 0;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+  }
+
+  .weekday {
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0;
+  }
+}

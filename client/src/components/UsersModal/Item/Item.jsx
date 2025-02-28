@@ -17,6 +17,7 @@ const Item = React.memo(
     organization,
     phone,
     isAdmin,
+    isLdap,
     isLocked,
     isRoleLocked,
     isUsernameLocked,
@@ -52,6 +53,7 @@ const Item = React.memo(
         <Table.Cell>
           <Radio toggle checked={isAdmin} disabled={isRoleLocked} onChange={handleIsAdminChange} />
         </Table.Cell>
+        <Table.Cell>{isLdap ? 'yes' : 'no'}</Table.Cell>
         <Table.Cell textAlign="right">
           <ActionsPopup
             user={{
@@ -61,6 +63,7 @@ const Item = React.memo(
               organization,
               phone,
               isAdmin,
+              isLdap,
               isLocked,
               isUsernameLocked,
               isDeletionLocked,
@@ -95,6 +98,7 @@ Item.propTypes = {
   organization: PropTypes.string,
   phone: PropTypes.string,
   isAdmin: PropTypes.bool.isRequired,
+  isLdap: PropTypes.bool.isRequired,
   isLocked: PropTypes.bool.isRequired,
   isRoleLocked: PropTypes.bool.isRequired,
   isUsernameLocked: PropTypes.bool.isRequired,
