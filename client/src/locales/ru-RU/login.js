@@ -3,6 +3,7 @@ export default {
     common: {
       emailOrUsername: 'E-mail или имя пользователя',
       invalidEmailOrUsername: 'Неверный e-mail или имя пользователя',
+      invalidLdap: 'ldap: Недействительные учетные данные',
       invalidCredentials: 'Недействительные учетные данные',
       invalidPassword: 'Неверный пароль',
       logInToPlanka: 'Вход в Planka',

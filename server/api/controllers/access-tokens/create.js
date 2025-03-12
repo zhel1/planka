@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const createUser = require('../users/create');
 const { v4: uuid } = require('uuid');
 
 const { getRemoteAddress } = require('../../../utils/remoteAddress');
@@ -16,6 +17,9 @@ const Errors = {
   },
   USE_SINGLE_SIGN_ON: {
     useSingleSignOn: 'Use single sign-on',
+  },
+  INVALID_LDAP: {
+    invalidLdap: 'Ldap authentication failed',
   },
 };
 
@@ -51,44 +55,86 @@ module.exports = {
     invalidPassword: {
       responseType: 'unauthorized',
     },
+    invalidLdap: {
+      responseType: 'unauthorized',
+    },
     useSingleSignOn: {
       responseType: 'forbidden',
     },
   },
 
   async fn(inputs) {
-    if (sails.config.custom.oidcEnforced) {
-      throw Errors.USE_SINGLE_SIGN_ON;
-    }
-
+    let accessToken = '';
+    let accessTokenPayload = null;
     const remoteAddress = getRemoteAddress(this.req);
-    const user = await sails.helpers.users.getOneByEmailOrUsername(inputs.emailOrUsername);
+    let user = await sails.helpers.users.getOneByEmailOrUsername(inputs.emailOrUsername);
 
-    if (!user) {
-      sails.log.warn(
-        `Invalid email or username: "${inputs.emailOrUsername}"! (IP: ${remoteAddress})`,
-      );
+    if (process.env.LDAP_SERVER_URL && ((user && user.isLdap) || !user)) {
+      sails.log.info('AUTH mode : LDAP');
 
-      throw sails.config.custom.showDetailedAuthErrors
-        ? Errors.INVALID_EMAIL_OR_USERNAME
-        : Errors.INVALID_CREDENTIALS;
+      const loginChain = inputs.emailOrUsername.split('@');
+      const email = loginChain.length > 1 ? inputs.emailOrUsername : `${loginChain[0]}@example.com`;
+      const login = loginChain[0];
+
+      const success = await sails.helpers.utils.ldapAuthentificateUser(login, inputs.password);
+
+      if (success) {
+        if (!user) {
+          await createUser.fn({
+            email,
+            password: '',
+            isAdmin: false,
+            isLdap: true,
+            name: login,
+            username: login,
+            subscribeToOwnCards: false,
+            createdAt: 'date',
+            updatedAt: 'date',
+          });
+          user = await sails.helpers.users.getOneByEmailOrUsername(inputs.emailOrUsername);
+        }
+
+        const { token, payload } = sails.helpers.utils.createJwtToken(user.id);
+        accessToken = token;
+        accessTokenPayload = payload;
+      }
+
+      if (accessToken === '' || accessTokenPayload === null) {
+        throw Errors.INVALID_LDAP;
+      }
+    } else {
+      sails.log.info('AUTH mode : local');
+      if (sails.config.custom.oidcEnforced) {
+        throw Errors.USE_SINGLE_SIGN_ON;
+      }
+
+      if (!user) {
+        sails.log.warn(
+          `Invalid email or username: "${inputs.emailOrUsername}"! (IP: ${remoteAddress})`,
+        );
+
+        throw sails.config.custom.showDetailedAuthErrors
+          ? Errors.INVALID_EMAIL_OR_USERNAME
+          : Errors.INVALID_CREDENTIALS;
+      }
+
+      if (user.isSso) {
+        throw Errors.USE_SINGLE_SIGN_ON;
+      }
+
+      if (!bcrypt.compareSync(inputs.password, user.password)) {
+        sails.log.warn(`Invalid password! (IP: ${remoteAddress})`);
+
+        throw sails.config.custom.showDetailedAuthErrors
+          ? Errors.INVALID_PASSWORD
+          : Errors.INVALID_CREDENTIALS;
+      }
+
+      const { token, payload } = sails.helpers.utils.createJwtToken(user.id);
+
+      accessToken = token;
+      accessTokenPayload = payload;
     }
-
-    if (user.isSso) {
-      throw Errors.USE_SINGLE_SIGN_ON;
-    }
-
-    if (!bcrypt.compareSync(inputs.password, user.password)) {
-      sails.log.warn(`Invalid password! (IP: ${remoteAddress})`);
-
-      throw sails.config.custom.showDetailedAuthErrors
-        ? Errors.INVALID_PASSWORD
-        : Errors.INVALID_CREDENTIALS;
-    }
-
-    const { token: accessToken, payload: accessTokenPayload } = sails.helpers.utils.createJwtToken(
-      user.id,
-    );
 
     const httpOnlyToken = inputs.withHttpOnlyToken ? uuid() : null;
 

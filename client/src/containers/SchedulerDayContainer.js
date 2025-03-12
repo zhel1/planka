@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { SchedulerMembershipRoles } from '../constants/Enums';
 import entryActions from '../entry-actions';
-import { updateSchedulerState } from '../sagas/core/services/scheduler-state';
 import selectors from '../selectors';
 import Day from '../components/Scheduler/components/Day/Day';
 

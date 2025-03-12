@@ -8,14 +8,20 @@ services:
       - user-avatars:/app/public/user-avatars
       - project-background-images:/app/public/project-background-images
       - attachments:/app/private/attachments
+      # - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
     ports:
       - 3000:1337
     environment:
       - BASE_URL=http://localhost:3000
       - DATABASE_URL=postgresql://postgres@postgres/planka
       - SECRET_KEY=notsecretkey
-      - LDAP_SERVER=ldap.com:389
-      - LDAP_BASE_DN=ou=MailUsers,dc=mail,dc=com
+
+      # - LDAP_SERVER_URL=ldap://ldap.forumsys.com:389
+      # - LDAP_BASE_DN=dc=example,dc=com
+      # - LDAP_CA_CERT_DIR=/usr/local/share/ca-certificates
+      # example to check ldap server
+      # ldapsearch -x -H ldap://ldap.forumsys.com:389 -D "uid=tesla,dc=example,dc=com" -w "password" -b "ou=scientists,dc=example,dc=com" "(uid=tesla)" dn
+      # ldapsearch -x -H ldap://ldap.forumsys.com:389 -D "uid=tesla,dc=example,dc=com" -w password
 
       # - TRUST_PROXY=0
       # - TOKEN_EXPIRES_IN=365 # In days
